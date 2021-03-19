@@ -68,7 +68,16 @@ body <- dashboardBody(
                     
                 )
                 
-        )       
+        ),
+        
+        # Map page ----------------------------------------------
+        tabItem("plots-tab",
+                
+                #Value Boxes ------------------------------------------
+                fluidRow(valueBoxOutput("count"),
+                         valueBoxOutput("avg.mag")),
+                
+        )
         
     ))
 
@@ -118,6 +127,24 @@ server <- function(input, output) {
         }
         
         
+    })
+    
+    # Making valuebox for Total earthquakes in 2020 ---------------------------
+    output$count = renderValueBox({
+        count = prettyNum(nrow(earthquake.data), 
+                          big.mark = ",")
+        
+        valueBox(subtitle = "Total Number of Earthquakes in 2020", 
+                 value = count, icon = icon("calculator"), color = "blue")
+    })
+    
+    # Making valuebox for Average magnitude of earthquakes -------------------
+    output$avg.mag <- renderValueBox({
+        avg = prettyNum(round(mean(earthquake.data$mag)), 
+                        big.mark = ",")
+        
+        valueBox(subtitle = "Average Magnitude of the Earthquakes", 
+                 value = avg, icon = icon("balance-scale-right"), color = "blue")
     })
     
     
