@@ -83,7 +83,7 @@ body <- dashboardBody(
                     tabBox(title = "Plots",
                            width = 10,
                            tabPanel(strong("Total Earthquakes by Month"), plotlyOutput("plot1")),
-                           tabPanel(strong("Average Magnitude of Earthquakes"), plotlyOutput("plot2"))),
+                           tabPanel(strong("Magnitude of Earthquakes"), plotlyOutput("plot2"))),
                     
                     box(
                         # Select maximum mag for plots-----------------------
